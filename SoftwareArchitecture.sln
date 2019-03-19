@@ -17,17 +17,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{37C56DB9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{7D47BBCC-6D56-4709-83F8-DB975C48EEB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Core.Domain", "onion\src\core\domain\Onion.Core.Domain\Onion.Core.Domain.csproj", "{6D143466-48E0-49F1-95CF-90ED82A6C327}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion.Core.Domain", "onion\src\core\domain\Onion.Core.Domain\Onion.Core.Domain.csproj", "{6D143466-48E0-49F1-95CF-90ED82A6C327}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Core.Application", "onion\src\core\application\Onion.Core.Application\Onion.Core.Application.csproj", "{37E2B11B-9287-43AD-8AA3-5DBED868E607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion.Core.Application", "onion\src\core\application\Onion.Core.Application\Onion.Core.Application.csproj", "{37E2B11B-9287-43AD-8AA3-5DBED868E607}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Infrastructure.Repositories.Sql", "onion\src\Infrastructure\Onion.Infrastructure.Repositories.Sql\Onion.Infrastructure.Repositories.Sql.csproj", "{9DC9D824-88AA-4B72-A1B3-8014815CD35A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion.Infrastructure.Repositories.Sql", "onion\src\Infrastructure\Onion.Infrastructure.Repositories.Sql\Onion.Infrastructure.Repositories.Sql.csproj", "{9DC9D824-88AA-4B72-A1B3-8014815CD35A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Infrastructure.Repositories.MongoDb", "onion\src\Infrastructure\Onion.Infrastructure.Repositories.MongoDb\Onion.Infrastructure.Repositories.MongoDb.csproj", "{02E51E62-BAAA-4607-9676-5DA98EB28E0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion.Infrastructure.Repositories.MongoDb", "onion\src\Infrastructure\Onion.Infrastructure.Repositories.MongoDb\Onion.Infrastructure.Repositories.MongoDb.csproj", "{02E51E62-BAAA-4607-9676-5DA98EB28E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Interfaces.Api", "onion\src\Interfaces\Onion.Interfaces.Api\Onion.Interfaces.Api.csproj", "{7FB91CE8-1023-4897-8C9D-DEF5D6DE1C69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion.Interfaces.Api", "onion\src\Interfaces\Onion.Interfaces.Api\Onion.Interfaces.Api.csproj", "{7FB91CE8-1023-4897-8C9D-DEF5D6DE1C69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Interfaces.ConsoleApp", "onion\src\Interfaces\Onion.Interfaces.ConsoleApp\Onion.Interfaces.ConsoleApp.csproj", "{A5B52C83-2969-4D39-A983-2AF43EF7AD03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onion.Interfaces.ConsoleApp", "onion\src\Interfaces\Onion.Interfaces.ConsoleApp\Onion.Interfaces.ConsoleApp.csproj", "{A5B52C83-2969-4D39-A983-2AF43EF7AD03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{38E0B0AB-D258-4918-9B26-994F634C45BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{082EC6A9-4DA1-4ECC-BC10-98CBD2BE9757}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A7E109F7-1A0D-420C-98F5-B7A92119D60F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D8B19D0A-AAF4-4198-97D6-429224629108}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{CD591FF3-208C-4C5F-AC0A-D882658B2884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Core.Domain.Tests", "Onion\Tests\Core\Domain\Onion.Core.Domain.Tests\Onion.Core.Domain.Tests.csproj", "{11159307-CAE6-4F03-9B73-43A4F829FD04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +71,10 @@ Global
 		{A5B52C83-2969-4D39-A983-2AF43EF7AD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5B52C83-2969-4D39-A983-2AF43EF7AD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5B52C83-2969-4D39-A983-2AF43EF7AD03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11159307-CAE6-4F03-9B73-43A4F829FD04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11159307-CAE6-4F03-9B73-43A4F829FD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11159307-CAE6-4F03-9B73-43A4F829FD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11159307-CAE6-4F03-9B73-43A4F829FD04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +92,12 @@ Global
 		{02E51E62-BAAA-4607-9676-5DA98EB28E0C} = {7D47BBCC-6D56-4709-83F8-DB975C48EEB4}
 		{7FB91CE8-1023-4897-8C9D-DEF5D6DE1C69} = {90469294-6A07-4BD6-ABEA-D1C9A1698F53}
 		{A5B52C83-2969-4D39-A983-2AF43EF7AD03} = {90469294-6A07-4BD6-ABEA-D1C9A1698F53}
+		{38E0B0AB-D258-4918-9B26-994F634C45BC} = {37C56DB9-3C46-4CA2-B2BF-3AAE2447DF73}
+		{082EC6A9-4DA1-4ECC-BC10-98CBD2BE9757} = {38E0B0AB-D258-4918-9B26-994F634C45BC}
+		{A7E109F7-1A0D-420C-98F5-B7A92119D60F} = {38E0B0AB-D258-4918-9B26-994F634C45BC}
+		{D8B19D0A-AAF4-4198-97D6-429224629108} = {37C56DB9-3C46-4CA2-B2BF-3AAE2447DF73}
+		{CD591FF3-208C-4C5F-AC0A-D882658B2884} = {37C56DB9-3C46-4CA2-B2BF-3AAE2447DF73}
+		{11159307-CAE6-4F03-9B73-43A4F829FD04} = {A7E109F7-1A0D-420C-98F5-B7A92119D60F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60277DF1-8F26-493D-9467-171592E25BDB}
