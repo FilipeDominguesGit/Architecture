@@ -2,7 +2,7 @@
 
 namespace Onion.Core.Domain.Services
 {
-    public interface IOrderDomainService
+    public interface IOrdersDomainService
     {
         void AddProductToOrder(Product product, Order order);
     }

@@ -7,7 +7,7 @@ namespace Onion.Core.Application.Services.Orders.Response
 {
     public class OrderResponse
     {
-        public OrderResponse(Guid orderNumber, string userFullName, int userId, List<OrderProductResponse> orders)
+        public OrderResponse(int orderNumber, string userFullName, int userId, List<OrderProductResponse> orders)
         {
             OrderNumber = orderNumber;
             UserFullName = userFullName;
@@ -16,7 +16,7 @@ namespace Onion.Core.Application.Services.Orders.Response
             Total = Orders.Select(o => o.Price).Sum();
         }
 
-        public Guid OrderNumber { get; private set; }
+        public int OrderNumber { get; private set; }
         public string UserFullName { get; private set; }
         public int UserId { get; private set; }
         public  List<OrderProductResponse> Orders { get; private set; }

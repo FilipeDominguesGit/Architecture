@@ -7,6 +7,6 @@
             Order = order;
         }
 
-        private OrderResponse Order { get; private set; }
+        public OrderResponse Order { get; private set; }
     }
 }

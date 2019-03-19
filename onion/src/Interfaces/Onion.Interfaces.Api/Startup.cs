@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Onion.Core.Application.Services.Orders;
+using Onion.Core.Application.Services.Users;
+using Onion.Core.Domain.Repositories;
+using Onion.Core.Domain.Services;
+using Onion.Infrastructure.Repositories.MongoDb;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Onion.Interfaces.Api
 {
@@ -26,6 +25,21 @@ namespace Onion.Interfaces.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Onion Architecture", Version = "v1" });
+            });
+
+
+            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IOrdersService, OrdersService>();
+            services.AddScoped<IOrdersDomainService, OrdersDomainService>();
+            services.AddSingleton<IUsersRepository, UsersRepository>();
+            services.AddSingleton<IOrdersRepository, OrdersRepository>();
+            services.AddSingleton<IProductRepository, ProductsRepository>();
+            services.AddSingleton<IInventoryRepository, InventoryRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +57,12 @@ namespace Onion.Interfaces.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Onion Architecture");
+            });
         }
     }
 }

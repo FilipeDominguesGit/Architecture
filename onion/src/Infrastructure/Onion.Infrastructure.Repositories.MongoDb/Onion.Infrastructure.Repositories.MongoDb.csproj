@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\domain\Onion.Core.Domain\Onion.Core.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

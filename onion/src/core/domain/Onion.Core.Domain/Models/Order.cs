@@ -8,12 +8,11 @@ namespace Onion.Core.Domain.Models
     {
         public Order(User user)
         {
-            OrderNumber = Guid.NewGuid();
             Products = new List<Product>();
             User = user;
         }
 
-        public Guid OrderNumber { get; private set; }
+        public int OrderNumber { get;  set; }
         public User User { get; private set; }
         public List<Product> Products { get; private set; }
         public float Total => CalculateTotal();

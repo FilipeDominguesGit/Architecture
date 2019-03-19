@@ -8,6 +8,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\application\Onion.Core.Application\Onion.Core.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Onion.Infrastructure.Repositories.MongoDb\Onion.Infrastructure.Repositories.MongoDb.csproj" />
   </ItemGroup>
 
 </Project>

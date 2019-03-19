@@ -3,8 +3,10 @@ using Onion.Core.Application.Services.Orders.Response;
 
 namespace Onion.Core.Application.Services.Orders
 {
-    public interface IOrderService
+    public interface IOrdersService
     {
         AddProductToOrderResponse AddProductToOrder(AddProductToOrderRequest request);
+
+        GetAllOrdersResponse GetAllOrders();
     }
 }

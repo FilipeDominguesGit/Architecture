@@ -3,7 +3,7 @@ using Onion.Core.Application.Services.Users.Responses;
 
 namespace Onion.Core.Application.Services.Users
 {
-    public interface IUserService
+    public interface IUsersService
     {
         GetAllUsersResponse GetAllUsers();
         GetUserResponse GetUser(int userId);

@@ -2,5 +2,6 @@
 {
     public class CreateNewUserResponse
     {
+        public bool IsSuccess { get; set; }
     }
 }

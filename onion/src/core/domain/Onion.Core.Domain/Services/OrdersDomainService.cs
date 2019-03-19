@@ -5,12 +5,12 @@ using Onion.Core.Domain.Exceptions;
 
 namespace Onion.Core.Domain.Services
 {
-    public class OrderDomainService : IOrderDomainService
+    public class OrdersDomainService : IOrdersDomainService
     {
         private readonly IInventoryRepository _inventoryRepository;
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrdersRepository _orderRepository;
 
-        public OrderDomainService(IInventoryRepository inventoryRepository, IOrderRepository orderRepository)
+        public OrdersDomainService(IInventoryRepository inventoryRepository, IOrdersRepository orderRepository)
         {
             _inventoryRepository = inventoryRepository;
             _orderRepository = orderRepository;

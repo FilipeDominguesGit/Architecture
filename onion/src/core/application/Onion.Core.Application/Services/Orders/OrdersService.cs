@@ -7,17 +7,17 @@ using Onion.Core.Domain.Services;
 
 namespace Onion.Core.Application.Services.Orders
 {
-    public class OrderService : IOrderService
+    public class OrdersService : IOrdersService
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrdersRepository _orderRepository;
         private readonly IProductRepository _productRepository;
-        private readonly IUserRepository _userRepository;
-        private readonly IOrderDomainService _orderDomainService;
+        private readonly IUsersRepository _userRepository;
+        private readonly IOrdersDomainService _orderDomainService;
 
-        public OrderService(IOrderRepository orderRepository, 
+        public OrdersService(IOrdersRepository orderRepository, 
             IProductRepository productRepository,
-            IUserRepository userRepository,
-            IOrderDomainService orderDomainService)
+            IUsersRepository userRepository,
+            IOrdersDomainService orderDomainService)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
@@ -44,6 +44,21 @@ namespace Onion.Core.Application.Services.Orders
             var orderResponse = new OrderResponse(order.OrderNumber, order.User.FullName,order.User.Id, orderProductsResponse);
 
             return new AddProductToOrderResponse(orderResponse);
+        }
+
+        public GetAllOrdersResponse GetAllOrders()
+        {
+            var orders =_orderRepository.GetAll();
+
+            return new GetAllOrdersResponse(
+                orders.Select(o=>
+                    new OrderResponse(
+                        o.OrderNumber,
+                        o.User.FullName,
+                        o.User.Id,
+                        o.Products.Select(p=>new OrderProductResponse(p.Id,p.Name,p.Brand,p.Price,p.Code)).ToList())
+                ).ToList()
+                );
         }
     }
 }
