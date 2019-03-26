@@ -9,10 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Inventory\Responses\" />
     <Folder Include="Services\Inventory\Requests\" />
+    <Folder Include="Services\Orders\Request\" />
     <Folder Include="Services\Products\Requests\" />
-    <Folder Include="Services\Products\Responses\" />
   </ItemGroup>
 
 </Project>

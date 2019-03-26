@@ -1,6 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Onion.Core.Application.Extensions;
+using Onion.Core.Application.Interfaces;
 using Onion.Core.Application.Services.Orders.Request;
 using Onion.Core.Application.Services.Orders.Response;
+using Onion.Core.Domain.Exceptions;
 using Onion.Core.Domain.Repositories;
 using Onion.Core.Domain.Models;
 using Onion.Core.Domain.Services;
@@ -10,22 +14,26 @@ namespace Onion.Core.Application.Services.Orders
     public class OrdersService : IOrdersService
     {
         private readonly IOrdersRepository _orderRepository;
-        private readonly IProductRepository _productRepository;
+        private readonly IProductsRepository _productRepository;
         private readonly IUsersRepository _userRepository;
         private readonly IOrdersDomainService _orderDomainService;
+        private readonly IStockDispatcher _stockDispatcher;
 
-        public OrdersService(IOrdersRepository orderRepository, 
-            IProductRepository productRepository,
+        public OrdersService(
+            IOrdersRepository orderRepository,
+            IProductsRepository productRepository,
             IUsersRepository userRepository,
-            IOrdersDomainService orderDomainService)
+            IOrdersDomainService orderDomainService,
+            IStockDispatcher stockDispatcher)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
             _userRepository = userRepository;
             _orderDomainService = orderDomainService;
+            _stockDispatcher = stockDispatcher;
         }
 
-        public AddProductToOrderResponse AddProductToOrder(AddProductToOrderRequest request)
+        public ServiceResponse<OrderResponse> AddProductToOrder(AddProductToOrderRequest request)
         {
             var order = _orderRepository.GetById(request.OrderId);
             if (order == null)
@@ -34,31 +42,58 @@ namespace Onion.Core.Application.Services.Orders
                 order = new Order(user);
             }
             var product = _productRepository.GetById(request.ProductId);
-            
-            _orderDomainService.AddProductToOrder(product,order);
 
-            var orderProductsResponse = order.Products
-                .OrderBy(v=>v.Id)
-                .Select(p => new OrderProductResponse(p.Id, p.Name, p.Brand, p.Price, p.Code)).ToList();
+            if (product == null)
+            {
+                return new ServiceResponse<OrderResponse>();
+            }
 
-            var orderResponse = new OrderResponse(order.OrderNumber, order.User.FullName,order.User.Id, orderProductsResponse);
+            try
+            {
+                _orderDomainService.AddProductToOrder(product, order);
+            }
+            catch (OutOfStockException exc)
+            {
+                _stockDispatcher.SendNotification(exc.Message);
+                return new ServiceResponse<OrderResponse>()
+                {
+                    IsSuccess = false,
+                    Result = order.MapToResponse()
+                };
+            }
 
-            return new AddProductToOrderResponse(orderResponse);
+            return new ServiceResponse<OrderResponse>()
+            {
+                IsSuccess = true,
+                Result = order.MapToResponse()
+            };
         }
 
-        public GetAllOrdersResponse GetAllOrders()
+        public ServiceResponse<IEnumerable<OrderResponse>> GetAllOrders()
         {
-            var orders =_orderRepository.GetAll();
+            var orders = _orderRepository.GetAll();
 
-            return new GetAllOrdersResponse(
-                orders.Select(o=>
-                    new OrderResponse(
-                        o.OrderNumber,
-                        o.User.FullName,
-                        o.User.Id,
-                        o.Products.Select(p=>new OrderProductResponse(p.Id,p.Name,p.Brand,p.Price,p.Code)).ToList())
-                ).ToList()
-                );
+            return new ServiceResponse<IEnumerable<OrderResponse>>()
+            {
+                IsSuccess = true,
+                Result = orders?.MapToResponse()
+            };
+        }
+
+        public ServiceResponse<OrderResponse> GetOrderById(int id)
+        {
+            var order = _orderRepository.GetById(id);
+
+            if (order != null)
+            {
+                return new ServiceResponse<OrderResponse>()
+                {
+                    IsSuccess = true,
+                    Result = order.MapToResponse()
+                };
+            }
+
+            return new ServiceResponse<OrderResponse>();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Onion.Core.Application.Extensions;
 using Onion.Core.Application.Services.Users.Requests;
 using Onion.Core.Application.Services.Users.Responses;
 using Onion.Core.Domain.Models;
@@ -15,26 +17,31 @@ namespace Onion.Core.Application.Services.Users
             _userRepository = userRepository;
         }
 
-        public GetAllUsersResponse GetAllUsers()
+        public ServiceResponse<IEnumerable<UserResponse>> GetAllUsers()
         {
             var users = _userRepository.GetAll();
 
-            var response = new GetAllUsersResponse()
+            var response = new ServiceResponse<IEnumerable<UserResponse>>()
             {
-                Users = users.Select(u=>new UserResponse(u.Id,u.FullName)).ToList()
+                Result = users.MapToResponse(),
+                IsSuccess = true
             };
 
             return response;
         }
 
-        public GetUserResponse GetUser(int userId)
+        public ServiceResponse<UserResponse> GetUser(int userId)
         {
             var user = _userRepository.GetById(userId);
             
-            return user == null ? new GetUserResponse() : new GetUserResponse( new UserResponse(user.Id,user.FullName));
+            return user == null ? new ServiceResponse<UserResponse>() : new ServiceResponse<UserResponse>()
+            {
+                IsSuccess = true,
+                Result = user.MapToResponse()
+            };
         }
 
-        public CreateNewUserResponse CreateNewUser(CreateNewUserRequest request)
+        public ServiceResponse<UserResponse> CreateNewUser(CreateNewUserRequest request)
         {
             var user = new User()
             {
@@ -44,8 +51,9 @@ namespace Onion.Core.Application.Services.Users
 
             _userRepository.Save(user);
 
-            return new CreateNewUserResponse()
+            return new ServiceResponse<UserResponse>()
             {
+                Result = user.MapToResponse(),
                 IsSuccess = true
             };
         }

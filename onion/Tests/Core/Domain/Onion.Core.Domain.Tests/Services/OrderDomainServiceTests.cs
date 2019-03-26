@@ -11,22 +11,20 @@ namespace Onion.Core.Domain.Tests.Services
     public class OrderDomainServiceTests
     {
 
-        private IOrderDomainService _orderDomainService;
+        private IOrdersDomainService _orderDomainService;
         private Mock<IInventoryRepository> _inventoryRepository;
-        private Mock<IOrderRepository> _orderRepository;
 
         [SetUp]
         public void Setup()
         {
             _inventoryRepository = new Mock<IInventoryRepository>();
-            _orderRepository = new Mock<IOrderRepository>();
         }
 
         [Test]
         public void AddProductToOrder_AddsProductToOrder_WhenHasAvailableOnInventory()
         {
             // arrange
-            _orderDomainService = new OrderDomainService(_inventoryRepository.Object,_orderRepository.Object);
+            _orderDomainService = new OrdersDomainService(_inventoryRepository.Object);
 
             var product = new Product()
             {

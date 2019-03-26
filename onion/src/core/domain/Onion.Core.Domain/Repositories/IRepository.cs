@@ -7,6 +7,5 @@ namespace Onion.Core.Domain.Repositories
         IEnumerable<T> GetAll();
         T GetById(int id);
         void Save(T entity);
-        void Delete(T entity);
     }
 }

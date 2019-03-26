@@ -5,7 +5,7 @@ using Onion.Core.Domain.Repositories;
 
 namespace Onion.Infrastructure.Repositories.MongoDb
 {
-    public class ProductsRepository : IProductRepository
+    public class ProductsRepository : IProductsRepository
     {
         private readonly List<Product> _inMemoryDb;
         private static int _lastId;
@@ -51,12 +51,5 @@ namespace Onion.Infrastructure.Repositories.MongoDb
             _inMemoryDb.Add(entity);
         }
 
-        public void Delete(Product entity)
-        {
-            var product = _inMemoryDb.FirstOrDefault(p => p.Id == entity.Id);
-
-            if (product != null)
-                _inMemoryDb.Remove(product);
-        }
     }
 }

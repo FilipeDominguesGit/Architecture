@@ -8,12 +8,10 @@ namespace Onion.Core.Domain.Services
     public class OrdersDomainService : IOrdersDomainService
     {
         private readonly IInventoryRepository _inventoryRepository;
-        private readonly IOrdersRepository _orderRepository;
 
-        public OrdersDomainService(IInventoryRepository inventoryRepository, IOrdersRepository orderRepository)
+        public OrdersDomainService(IInventoryRepository inventoryRepository)
         {
             _inventoryRepository = inventoryRepository;
-            _orderRepository = orderRepository;
         }
 
         public void AddProductToOrder(Product product, Order order)
@@ -24,13 +22,10 @@ namespace Onion.Core.Domain.Services
             {
                 inventoryItem.Quantity--;
                 order.Products.Add(product);
-
-                _inventoryRepository.Save(inventoryItem);
-                _orderRepository.Save(order);
             }
             else
             {
-                throw new OutOfStockException();
+                throw new OutOfStockException($"Product {product.Id} out of stock");
             }
         }
     }

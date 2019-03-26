@@ -31,8 +31,8 @@ namespace Onion.Infrastructure.Repositories.MongoDb
                 },
                 new User()
                 {
-                    FirstName = "User B",
-                    LastName = "Last Name B",
+                    FirstName = "User C",
+                    LastName = "Last Name C",
                     Id = ++_lastId
                 }
             };
@@ -54,12 +54,5 @@ namespace Onion.Infrastructure.Repositories.MongoDb
             _inMemoryUsersDb.Add(entity);
         }
 
-        public void Delete(User entity)
-        {
-            var user = _inMemoryUsersDb.FirstOrDefault(u => u.Id == entity.Id);
-
-            if (user != null)
-                _inMemoryUsersDb.Remove(user);
-        }
     }
 }

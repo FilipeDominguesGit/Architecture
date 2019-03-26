@@ -2,7 +2,7 @@
 
 namespace Onion.Core.Domain.Repositories
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IProductsRepository : IRepository<Product>
     {
     }
 }

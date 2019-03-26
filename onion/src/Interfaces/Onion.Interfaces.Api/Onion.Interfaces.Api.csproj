@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\core\application\Onion.Core.Application\Onion.Core.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Onion.Infrastructure.Repositories.MongoDb\Onion.Infrastructure.Repositories.MongoDb.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Onion.Infrastructure.StockDispatcher.Email\Onion.Infrastructure.StockDispatcher.Email.csproj" />
   </ItemGroup>
 
 </Project>

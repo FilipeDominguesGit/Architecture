@@ -58,12 +58,5 @@ namespace Onion.Infrastructure.Repositories.MongoDb
             _inMemoryDb.Add(entity);
         }
 
-        public void Delete(Inventory entity)
-        {
-            var inventoryItem = _inMemoryDb.FirstOrDefault(u => u.Product.Id == entity.Product.Id);
-
-            if (inventoryItem != null)
-                _inMemoryDb.Remove(inventoryItem);
-        }
     }
 }

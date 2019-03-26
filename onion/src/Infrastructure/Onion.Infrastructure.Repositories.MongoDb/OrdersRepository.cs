@@ -20,7 +20,7 @@ namespace Onion.Infrastructure.Repositories.MongoDb
                    {
                        FirstName = "User A",
                        LastName = "Last Name A",
-                       Id = ++_lastId
+                       Id = 1
                    })
                {
                    OrderNumber = ++_lastId,
@@ -66,13 +66,6 @@ namespace Onion.Infrastructure.Repositories.MongoDb
             _inMemoryOrdersDb.Add(entity);
         }
 
-        public void Delete(Order entity)
-        {
-            var user = _inMemoryOrdersDb.FirstOrDefault(o => o.OrderNumber == entity.OrderNumber);
-
-            if (user != null)
-                _inMemoryOrdersDb.Remove(user);
-        }
 
         public IEnumerable<Order> GetUserOrders(int userId)
         {

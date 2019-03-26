@@ -3,11 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Onion.Core.Application.Interfaces;
+using Onion.Core.Application.Services.Inventory;
 using Onion.Core.Application.Services.Orders;
+using Onion.Core.Application.Services.Products;
 using Onion.Core.Application.Services.Users;
 using Onion.Core.Domain.Repositories;
 using Onion.Core.Domain.Services;
 using Onion.Infrastructure.Repositories.MongoDb;
+using Onion.Infrastructure.StockDispatcher.Email;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Onion.Interfaces.Api
@@ -21,7 +25,6 @@ namespace Onion.Interfaces.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -34,15 +37,17 @@ namespace Onion.Interfaces.Api
 
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IOrdersService, OrdersService>();
+            services.AddScoped<IInventoryService, InventoryService>();
+            services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IStockDispatcher, StockDispatcher>();
             services.AddScoped<IOrdersDomainService, OrdersDomainService>();
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<IOrdersRepository, OrdersRepository>();
-            services.AddSingleton<IProductRepository, ProductsRepository>();
+            services.AddSingleton<IProductsRepository, ProductsRepository>();
             services.AddSingleton<IInventoryRepository, InventoryRepository>();
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,7 +56,6 @@ namespace Onion.Interfaces.Api
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

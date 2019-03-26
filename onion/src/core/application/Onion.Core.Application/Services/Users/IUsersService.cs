@@ -1,12 +1,13 @@
-﻿using Onion.Core.Application.Services.Users.Requests;
+﻿using System.Collections.Generic;
+using Onion.Core.Application.Services.Users.Requests;
 using Onion.Core.Application.Services.Users.Responses;
 
 namespace Onion.Core.Application.Services.Users
 {
     public interface IUsersService
     {
-        GetAllUsersResponse GetAllUsers();
-        GetUserResponse GetUser(int userId);
-        CreateNewUserResponse CreateNewUser(CreateNewUserRequest request);
+        ServiceResponse<IEnumerable<UserResponse>> GetAllUsers();
+        ServiceResponse<UserResponse> GetUser(int userId);
+        ServiceResponse<UserResponse> CreateNewUser(CreateNewUserRequest request);
     }
 }
