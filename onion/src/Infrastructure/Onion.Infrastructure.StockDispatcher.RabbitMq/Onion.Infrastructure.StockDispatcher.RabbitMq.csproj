@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\domain\Onion.Core.Domain\Onion.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\core\application\Onion.Core.Application\Onion.Core.Application.csproj" />
   </ItemGroup>
 
 </Project>

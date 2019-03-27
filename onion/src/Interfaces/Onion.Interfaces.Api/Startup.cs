@@ -35,12 +35,15 @@ namespace Onion.Interfaces.Api
             });
 
 
+            services.AddScoped<IOrdersDomainService, OrdersDomainService>();
+            
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IOrdersService, OrdersService>();
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IProductsService, ProductsService>();
+            
             services.AddScoped<IStockDispatcher, StockDispatcher>();
-            services.AddScoped<IOrdersDomainService, OrdersDomainService>();
+            
             services.AddSingleton<IUsersRepository, UsersRepository>();
             services.AddSingleton<IOrdersRepository, OrdersRepository>();
             services.AddSingleton<IProductsRepository, ProductsRepository>();

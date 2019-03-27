@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\application\Onion.Core.Application\Onion.Core.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Onion.Infrastructure.Repositories.MongoDb\Onion.Infrastructure.Repositories.MongoDb.csproj" />
+  </ItemGroup>
+
 </Project>
