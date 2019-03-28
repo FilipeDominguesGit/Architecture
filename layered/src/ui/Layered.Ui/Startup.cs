@@ -32,7 +32,7 @@ namespace Layered.Ui
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Onion Architecture", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Layered Architecture", Version = "v1" });
             });
 
             services.AddScoped<UsersService>();
@@ -58,7 +58,7 @@ namespace Layered.Ui
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Onion Architecture");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Layered Architecture");
             });
         }
     }
