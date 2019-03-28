@@ -28,8 +28,8 @@ namespace Layered.Dal
                 },
                 new User()
                 {
-                    FirstName = "User B",
-                    LastName = "Last Name B",
+                    FirstName = "User C",
+                    LastName = "Last Name C",
                     Id = ++_lastId
                 }
             };
